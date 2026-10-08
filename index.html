@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KoreGrid - Personal Investment Journal</title>
+    <meta name="description" content="KoreGrid is a private investment journal and portfolio analyzer for serious retail investors. Track holdings, transactions, and analytics on-device.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #ffffff;
+        }
+
+        .nav {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid #e5e5e7;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 700;
+            color: #0a84ff;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #1a1a1a;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #0a84ff;
+        }
+
+        .hero {
+            padding: 100px 24px 80px;
+            text-align: center;
+            background: linear-gradient(180deg, #f5f7fa 0%, #ffffff 100%);
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 6px 14px;
+            background: #e8f2ff;
+            color: #0a84ff;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-size: clamp(36px, 6vw, 56px);
+            font-weight: 700;
+            letter-spacing: -1.5px;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            color: #0a0a0a;
+        }
+
+        .hero p {
+            font-size: 19px;
+            color: #555;
+            max-width: 640px;
+            margin: 0 auto 36px;
+        }
+
+        .cta {
+            display: inline-block;
+            padding: 14px 32px;
+            background: #0a84ff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(10, 132, 255, 0.25);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin-bottom: 16px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 17px;
+            margin-bottom: 56px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .feature {
+            padding: 28px;
+            background: #f9fafb;
+            border-radius: 16px;
+            border: 1px solid #eee;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .feature:hover {
+            transform: translateY(-4px);
+            border-color: #0a84ff;
+        }
+
+        .feature-icon {
+            font-size: 28px;
+            margin-bottom: 14px;
+        }
+
+        .feature h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .feature p {
+            color: #666;
+            font-size: 15px;
+        }
+
+        .privacy-banner {
+            background: #f5f7fa;
+            padding: 60px 24px;
+            text-align: center;
+            border-top: 1px solid #e5e5e7;
+        }
+
+        .privacy-banner h2 {
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+
+        .privacy-banner p {
+            color: #555;
+            max-width: 600px;
+            margin: 0 auto 20px;
+        }
+
+        .privacy-banner a {
+            color: #0a84ff;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        footer {
+            padding: 40px 24px;
+            text-align: center;
+            color: #888;
+            font-size: 14px;
+            border-top: 1px solid #e5e5e7;
+        }
+
+        footer a {
+            color: #555;
+            text-decoration: none;
+            margin: 0 12px;
+        }
+
+        footer a:hover {
+            color: #0a84ff;
+        }
+
+        @media (max-width: 640px) {
+            .nav-links {
+                gap: 16px;
+            }
+
+            .hero {
+                padding: 60px 20px 50px;
+            }
+
+            .section {
+                padding: 50px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="nav">
+    <div class="nav-container">
+        <div class="logo">KoreGrid</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="privacy.html">Privacy</a></li>
+            <li><a href="Support.html">Support</a></li>
+            <li><a href="Terms%20of%20Use.html">Terms</a></li>
+        </ul>
+    </div>
+</nav>
+
+<section class="hero">
+    <span class="hero-badge">Personal Investment Journal</span>
+    <h1>Clarity, not clutter.</h1>
+    <p>KoreGrid is a private investment journal and portfolio analyzer for serious retail investors. Log every position, transaction, dividend, and receipt — without ever connecting to a brokerage or live market feed.</p>
+    <a href="Support.html" class="cta">Learn more</a>
+</section>
+
+<section class="section">
+    <div class="container">
+        <h2 class="section-title">Built for serious investors</h2>
+        <p class="section-subtitle">Everything you need to understand your portfolio — and nothing you don't.</p>
+
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">📊</div>
+                <h3>Dashboard</h3>
+                <p>Net worth, unrealized and realized P/L, top movers, and a smooth interactive line chart of portfolio value over selectable time ranges.</p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">🥧</div>
+                <h3>Allocation by Asset Class</h3>
+                <p>A custom-rendered donut chart breaks down your allocation by equities, crypto, ETFs, bonds, real estate, cash, commodities, and other.</p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">📈</div>
+                <h3>Holdings</h3>
+                <p>Sortable, searchable position lists with per-position sparklines, average cost, market value, and P/L percent.</p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">📷</div>
+                <h3>Receipts & Transactions</h3>
+                <p>Each holding opens to a detail view with full transaction history and any attached receipt photos from camera or photo library.</p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">🔬</div>
+                <h3>Deep Analytics</h3>
+                <p>Monthly P/L bars, monthly dividend income, monthly transaction volume, and risk readouts driven entirely by your own recorded returns.</p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">🧮</div>
+                <h3>Seven Calculators</h3>
+                <p>ROI, dividend yield, DCA, compound growth, volatility, cost basis, and goal tracker — each with a clear formula breakdown.</p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">🔒</div>
+                <h3>On-Device Only</h3>
+                <p>No execution, no custody, no live market data, no account, no signup, and no server. Everything lives on-device.</p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">📤</div>
+                <h3>Your Data, Exportable</h3>
+                <p>Encrypted at rest by iOS. Export your full journal as JSON whenever you want — your data is always yours.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="privacy-banner">
+    <h2>Privacy first</h2>
+    <p>KoreGrid does not collect, share, or transmit personal data to any server. All journal entries remain on your device.</p>
+    <a href="privacy.html">Read the full privacy policy →</a>
+</section>
+
+<footer>
+    <p>© 2026 KoreGrid. All rights reserved.</p>
+    <p style="margin-top: 12px;">
+        <a href="index.html">Home</a>·
+        <a href="privacy.html">Privacy</a>·
+        <a href="Support.html">Support</a>·
+        <a href="Terms%20of%20Use.html">Terms</a>
+    </p>
+    <p style="margin-top: 12px;">Contact: Mefepzavap@icloud.com</p>
+</footer>
+
+</body>
+</html>
